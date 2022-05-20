@@ -5,6 +5,21 @@
     --white-color: #dff3e4;
 }
 
+.odd{
+    font-weight: 100;
+    color: red;
+}
+
+.even{
+    font-weight: bold;
+   color: blue;
+}
+
+.logoFont {
+    font-family: 'Press Start 2P', cursive;
+font-family: 'Racing Sans One', cursive;
+}
+
 body{
     color: var(--dark-color);
 }

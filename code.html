@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A coding project by JA</title>
+    <title>Hondu: A coding project by JA</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +16,10 @@
         <link rel="icon" type="image/png" href="/img/favicon-32x32.png">
         <link rel="stylesheet" href="/css/prism.css">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Racing+Sans+One&display=swap" rel="stylesheet">
+
 </head>
 
 
@@ -23,8 +27,8 @@
 <!-- nav section  -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/img/ja.jpg" alt="J A" class="d-inline-block align-text-center"
-            width="55" height="40"> App Name</a>
+        <a class="navbar-brand logoFont" href="#"><img src="/img/ja.jpg" alt="J A" class="d-inline-block align-text-center"
+            width="55" height="40"> Hondu</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,10 +45,10 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/sams91/Hundo">Git Repo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">About</a>
+                    <a class="nav-link" href="about.html">About</a>
                 </li>
 
             </ul>
@@ -54,21 +58,93 @@
 <!-- main section  -->
 <main class="flex-shrink-0">
     <div class="container py-5 px-5 mt-5">
-        <h2 class="border-1 border-bottom border-dark">The Code for App Name</h2>
+        <h2 class="border-1 border-bottom border-dark">The Code for Hondu</h2>
         <div class="row row-cols-1 row-cols-lg-2">
             <div class="col-lg-8">
                 <pre class="line-numbers"><code class="language-javascript">
-                    // call hello world
-                    function helloWorld(){
-                    alert("hello World");
-                    }
+                    // Get the values from the page
+// starts or controller function
+function getValues() {
+// get values from the page
+    let startValue = document.getElementById("startValue").value;
+    let endValue = document.getElementById("endValue").value;
+    
+    //we need to validate our input
+    // parse into integers
+    startValue = parseInt(startValue);
+    endValue = parseInt(endValue);
+
+    if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+        //we call generateNumbers
+        let numbers = generateNumbers(startValue, endValue);
+        //we call displayNumbers
+        displayNumbers(numbers);
+
+    } else {
+        alert("you must enter integers");       
+    }
+
+        
+
+}
+
+// Generate numbers from the start value to the end value.
+// Logic functions
+function generateNumbers(sValue, eValue) {
+
+    let numbers = [];
+
+    //we want to get all numbers from start to end
+    for(let index = sValue; index <= eValue; index++) {
+        //this will execute in a loop until index = eValue
+        numbers.push(index);
+        
+    }
+    return numbers;
+}
+
+// display numbers and mark even numbers bold
+// display or view functions
+function displayNumbers(numbers) {
+
+
+
+    let templateRows = "";
+
+    for (let index = 0; index < numbers.length; index++) {
+        let className = "even"
+        let number = numbers[index];
+        if(number % 2 == 0){
+            className = "even";
+        }
+        else{
+            className = "odd"
+        }
+//This is the original code but the template literals/HTML won't display properly in Prism.
+//        templateRows += `<tr><td class= "${className}">${number}</td></tr>`;
+//This is the code modified to display properly in Prism 
+          templateRows += `&lt;tr>&lt;td class="${className}" >${number}&lt;/td>&lt;/tr>`;
+    }
+
+
+    document.getElementById("results").innerHTML = templateRows;
+}
                 </code>
                 </pre>
             </div>
             <div class="col-lg-4">
-                <p>The code is structured in one function</p>
-                <h5>Hello World</h5>
-                <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                <h5>Hondu</h5>
+                
+                <p>Hondu is a simple app that takes any set of numbers between 0 and 100
+                    and lists them in order. The odd numbers are shown in red and the even
+                     numbers are blue and bold.
+                </p>
+                <p>The code is structured in three functions</p>
+                <p>
+                    Note the code on line 60. Template literals won’t display properly because Prism
+                     is being used so this line of code is commented out and a modified version of 
+                     the code is shown on line 62.
+                </p>
             </div>
         </div>
     </div>
